@@ -3,6 +3,11 @@
 extern "C" {
 	NTKERNELAPI NTSTATUS IoCreateDriver(PUNICODE_STRING DriverName, PDRIVER_INITIALIZE InitializationFunction);
 	NTKERNELAPI NTSTATUS MmCopyVirtualMemory(PEPROCESS SourceProcess, PVOID SourceAddress, PEPROCESS TargetProcess, PVOID TargetAddress, SIZE_T BufferSize, KPROCESSOR_MODE PreviousMode, PSIZE_T ReturnSize);
+	NTKERNELAPI
+		PVOID
+		PsGetProcessSectionBaseAddress(
+			__in PEPROCESS Process
+		);
 }
 
 void debug_print(PCSTR text) {
@@ -15,6 +20,7 @@ namespace driver {
 		constexpr ULONG attach = CTL_CODE(FILE_DEVICE_UNKNOWN, 0x696, METHOD_BUFFERED, FILE_SPECIAL_ACCESS);
 		constexpr ULONG read = CTL_CODE(FILE_DEVICE_UNKNOWN, 0x697, METHOD_BUFFERED, FILE_SPECIAL_ACCESS);
 		constexpr ULONG write = CTL_CODE(FILE_DEVICE_UNKNOWN, 0x698, METHOD_BUFFERED, FILE_SPECIAL_ACCESS);
+		constexpr ULONG get_base = CTL_CODE(FILE_DEVICE_UNKNOWN, 0x699, METHOD_BUFFERED, FILE_SPECIAL_ACCESS);
 	}
 	struct Request {
 		HANDLE process_id;
@@ -59,6 +65,7 @@ namespace driver {
 		switch (control_code)
 		{
 			case codes::attach:
+
 				status = PsLookupProcessByProcessId(request->process_id, &target_process);
 				break;
 			case codes::read:
@@ -69,6 +76,14 @@ namespace driver {
 			case codes::write:
 				if (target_process != nullptr) {
 					status = MmCopyVirtualMemory(PsGetCurrentProcess(), request->buffer, target_process, request->target, request->size, KernelMode, &request->return_size);
+				}
+				break;
+			case codes::get_base:
+				if (target_process != nullptr) {
+					PVOID base_address = PsGetProcessSectionBaseAddress(target_process);
+					*reinterpret_cast<PVOID*>(request->buffer) = base_address;
+					request->return_size = sizeof(PVOID);
+					status = STATUS_SUCCESS;
 				}
 				break;
 			default:

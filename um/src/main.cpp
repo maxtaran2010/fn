@@ -2,6 +2,7 @@
 
 #include <Windows.h>
 #include <string>
+#include <tchar.h>
 #include <TlHelp32.h>
 
 
@@ -38,38 +39,29 @@ static DWORD get_process_id(const wchar_t* process_name) {
 
 
 static std::uintptr_t get_module_base(const DWORD pid, const wchar_t* module_name) {
-	std::uintptr_t module_base = 0;
+	std::uintptr_t baseAddress = 0;
+	HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE | TH32CS_SNAPMODULE32, pid);
 
-	HANDLE snap_shot = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE || TH32CS_SNAPMODULE32, pid);
-
-	if (snap_shot == INVALID_HANDLE_VALUE) {
-		return module_base;
+	if (hSnapshot == INVALID_HANDLE_VALUE) {
+		std::cerr << "Failed to create snapshot: " << GetLastError() << std::endl;
+		return 0;
 	}
 
+	MODULEENTRY32W moduleEntry;
+	moduleEntry.dwSize = sizeof(MODULEENTRY32W);
 
-	MODULEENTRY32W entry = {};
-	entry.dwSize = sizeof(decltype(entry));
-	if (Module32FirstW(snap_shot, &entry) == TRUE) {
-		std::wcout << entry.modBaseAddr << std::endl;
-		if (wcsstr(module_name, entry.szModule) != nullptr) {
-			module_base = reinterpret_cast<std::uintptr_t>(entry.modBaseAddr);
-
-		}
-		else {
-			while (Module32NextW(snap_shot, &entry) == TRUE) {
-				std::wcout << entry.szModule;
-				if (wcsstr(module_name, entry.szModule) != nullptr) {
-					module_base = reinterpret_cast<std::uintptr_t>(entry.modBaseAddr);
-					break;
-				}
-			}
-		}
+	if (Module32FirstW(hSnapshot, &moduleEntry)) {
+		// The first module is always the main executable module of the process.
+		baseAddress = (std::uintptr_t)moduleEntry.modBaseAddr;
+		std::cout << "Module name: ";
+		std::wcout << moduleEntry.szModule << L"\n";
+	}
+	else {
+		std::cerr << "Failed to retrieve module information: " << GetLastError() << std::endl;
 	}
 
-	std::cout << GetLastError() << std::endl;
-	module_base = 100;
-	CloseHandle(snap_shot);
-	return module_base;
+	CloseHandle(hSnapshot);
+	return baseAddress;
 
 }
 
@@ -79,6 +71,7 @@ namespace driver {
 		constexpr ULONG attach = CTL_CODE(FILE_DEVICE_UNKNOWN, 0x696, METHOD_BUFFERED, FILE_SPECIAL_ACCESS);
 		constexpr ULONG read = CTL_CODE(FILE_DEVICE_UNKNOWN, 0x697, METHOD_BUFFERED, FILE_SPECIAL_ACCESS);
 		constexpr ULONG write = CTL_CODE(FILE_DEVICE_UNKNOWN, 0x698, METHOD_BUFFERED, FILE_SPECIAL_ACCESS);
+		constexpr ULONG get_base = CTL_CODE(FILE_DEVICE_UNKNOWN, 0x699, METHOD_BUFFERED, FILE_SPECIAL_ACCESS);
 	}
 	struct Request {
 		HANDLE process_id;
@@ -101,9 +94,11 @@ namespace driver {
 		Request r;
 		r.target = reinterpret_cast<PVOID>(addr);
 		r.buffer = &temp;
-		r.size = sizeof(T);
+		r.size = sizeof(temp);
+
 
 		DeviceIoControl(driver_handle, codes::read, &r, sizeof(r), &r, sizeof(r), nullptr, nullptr);
+
 		return temp;
 
 	}
@@ -117,6 +112,17 @@ namespace driver {
 
 		DeviceIoControl(driver_handle, codes::write, &r, sizeof(r), &r, sizeof(r), nullptr, nullptr);
 	}
+
+	std::uintptr_t get_process_base(HANDLE driver_handle, wchar_t* module_name) {
+		std::uintptr_t base = 0;
+		Request r;
+		r.buffer = &base;
+		r.target = reinterpret_cast<PVOID>(module_name);
+		r.size = sizeof(base);
+		r.return_size = 0;
+		DeviceIoControl(driver_handle, codes::get_base, &r, sizeof(r), &r, sizeof(r), nullptr, nullptr);
+		return base;
+	}
 }
 
 int main() {
@@ -128,19 +134,14 @@ int main() {
 
 	if (driver::attach_to_process(driver, pid) == true) {
 		std::cout << "successfull attachment\n";
-		if (const std::uintptr_t client = get_module_base(pid, L"client.dll"); client != 0 && client != 100) {
-			std::cout << "Client found.\n";
-			double x = driver::read_memory<double>(driver, client);
-			std::cout << x;
-		}
-
-		else {
-			//std::cout << client;
-			double x = driver::read_memory<double>(driver, 10);
-			std::cout << x;
+		std::uintptr_t process_base = driver::get_process_base(driver, (wchar_t*)L"a");
+		std::cout << "Process base(new): 0x" << std::hex << process_base << std::endl;
+		ULONG64 c = driver::read_memory<ULONG64>(driver, process_base);
+		for (int i = 0; i < 100000; i++) {
+			std::cout << driver::read_memory<__int32>(driver, process_base - (i * 0x1000) + 0x250);
 		}
 	}
-	std::cout << "finish";
+	std::cout << "finish\n";
 	std::cin.get();
 	CloseHandle(driver);
 	return 0;
