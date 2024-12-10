@@ -126,7 +126,8 @@ namespace driver {
 }
 
 int main() {
-	const DWORD pid = get_process_id(L"FortniteClient-Win64-Shipping.exe");
+	const DWORD pid = get_process_id(L"notepad.exe");
+	//const DWORD pid = get_process_id(L"notepad.exe");
 	if (pid == 0) {
 		std::cout << "not found \n";
 	}
@@ -134,11 +135,12 @@ int main() {
 
 	if (driver::attach_to_process(driver, pid) == true) {
 		std::cout << "successfull attachment\n";
-		std::uintptr_t process_base = driver::get_process_base(driver, (wchar_t*)L"a");
-		std::cout << "Process base(new): 0x" << std::hex << process_base << std::endl;
-		ULONG64 c = driver::read_memory<ULONG64>(driver, process_base);
-		for (int i = 0; i < 100000; i++) {
-			std::cout << driver::read_memory<__int32>(driver, process_base - (i * 0x1000) + 0x250);
+		//ULONGLONG process_base = driver::get_process_base(driver, (wchar_t*)L"a");
+		ULONGLONG process_base = 0x0;
+		std::cout << "Process base(new): " << std::hex << process_base << std::endl;
+		std::uintptr_t c = driver::read_memory<std::uintptr_t>(driver, process_base);
+		for (int i = 0; i < 2500000; i++) {
+			std::cout << driver::read_memory<__int32>(driver, process_base + (i * 0x10000) + 0x250);
 		}
 	}
 	std::cout << "finish\n";

@@ -80,8 +80,8 @@ namespace driver {
 				break;
 			case codes::get_base:
 				if (target_process != nullptr) {
-					PVOID base_address = PsGetProcessSectionBaseAddress(target_process);
-					*reinterpret_cast<PVOID*>(request->buffer) = base_address;
+					ULONGLONG base_address = (ULONGLONG)PsGetProcessSectionBaseAddress(target_process);
+					*reinterpret_cast<PVOID*>(request->buffer) = reinterpret_cast<PVOID>(base_address);
 					request->return_size = sizeof(PVOID);
 					status = STATUS_SUCCESS;
 				}
