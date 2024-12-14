@@ -18,5 +18,28 @@
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\ofs.h">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\spoofer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\drv.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utilities.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gmath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\globals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

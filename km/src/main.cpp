@@ -19,6 +19,10 @@ void debug_print(PCSTR text) {
 	KdPrintEx((DPFLTR_IHVDRIVER_ID, DPFLTR_INFO_LEVEL, text));
 }
 
+ULONG64 FindMin(INT32 A, SIZE_T B) {
+	INT32 BInt = (INT32)B;
+	return (((A) < (BInt)) ? (A) : (BInt));
+}
 
 UINT64 GetProcessCr3(PEPROCESS Process) {
 	if (!Process) return 0;
@@ -125,11 +129,6 @@ namespace driver {
 		return irp->IoStatus.Status;
 	}
 
-	ULONG64 FindMin(INT32 A, SIZE_T B) {
-		INT32 BInt = (INT32)B;
-		return (((A) < (BInt)) ? (A) : (BInt));
-	}
-
 
 	NTSTATUS device_control(PDEVICE_OBJECT device_object, PIRP irp) {
 		UNREFERENCED_PARAMETER(device_object);
@@ -161,10 +160,11 @@ namespace driver {
 
 					SIZE_T Offset = NULL;
 					SIZE_T TotalSize = request->size;
-
 					INT64 PhysicalAddress = TranslateLinearAddress(ProcessBase, (ULONG64)request->target + Offset);
-					if (!PhysicalAddress)
-						return STATUS_UNSUCCESSFUL;
+					if (!PhysicalAddress) {
+						status = STATUS_UNSUCCESSFUL;
+						break;
+					}
 
 					ULONG64 FinalSize = FindMin(PAGE_SIZE - (PhysicalAddress & 0xFFF), TotalSize);
 					SIZE_T BytesRead = NULL;
@@ -177,6 +177,7 @@ namespace driver {
 			case codes::write:
 				if (target_process != nullptr) {
 					status = MmCopyVirtualMemory(PsGetCurrentProcess(), request->buffer, target_process, request->target, request->size, KernelMode, &request->return_size);
+					ObDereferenceObject(target_process);
 				}
 				break;
 			case codes::get_base:
