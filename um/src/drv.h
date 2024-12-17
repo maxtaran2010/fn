@@ -131,7 +131,12 @@ T read(std::uintptr_t address) {
 
 	SPOOF_FUNC;
 	if (driver::driver_handle) {
-		return driver::read_memory<T>(address);
+		if (is_valid(address)) {
+			return driver::read_memory<T>(address);
+		}
+		else {
+			std::cout << "failed address: 0x" << address << "\n";
+		}
 	}
 }
 

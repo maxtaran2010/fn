@@ -12,6 +12,20 @@
 #include <d3d11.h>
 # define M_PI           3.14159265358979323846
 
+class entity {
+public:
+	uintptr_t
+		actor,
+		skeletal_mesh,
+		root_component,
+		player_state;
+	int
+		team_index;
+	int
+		kills;
+};
+
+
 enum perfect_skeleton {
 	BONE_BOTTOM = 0,
 	BONE_HEAD = 110,
@@ -656,16 +670,15 @@ namespace utilities {
 
 		auto get_player_name(uintptr_t player_state) -> std::string
 		{
-			auto fstring = read<__int64>(player_state + 0xAB0);
+			auto fstring = read<__int64>(player_state + 0xAD0);
 			auto length = read<int>(fstring + 16);
 
 			auto v6 = (__int64)length;
 
-			if (!v6) return std::string("strucpik");
+			if (!v6) return std::string("v6");
 
 			auto IsABot = read<char>(player_state + 0x29A & 0x8);
 
-			if (IsABot) return std::string("logma");
 
 			auto ftext = (uintptr_t)read<__int64>(fstring + 8);
 

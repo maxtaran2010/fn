@@ -19,10 +19,6 @@ void debug_print(PCSTR text) {
 	KdPrintEx((DPFLTR_IHVDRIVER_ID, DPFLTR_INFO_LEVEL, text));
 }
 
-ULONG64 FindMin(INT32 A, SIZE_T B) {
-	INT32 BInt = (INT32)B;
-	return (((A) < (BInt)) ? (A) : (BInt));
-}
 
 UINT64 GetProcessCr3(PEPROCESS Process) {
 	if (!Process) return 0;
@@ -54,6 +50,7 @@ NTSTATUS ReadPhysicalMemory(PVOID TargetAddress, PVOID Buffer, SIZE_T Size, SIZE
 	MM_COPY_ADDRESS CopyAddress = { 0 };
 	CopyAddress.PhysicalAddress.QuadPart = (LONGLONG)TargetAddress;
 	return MmCopyMemory(Buffer, CopyAddress, Size, MM_COPY_MEMORY_PHYSICAL, BytesRead);
+
 }
 
 
@@ -129,6 +126,11 @@ namespace driver {
 		return irp->IoStatus.Status;
 	}
 
+	ULONG64 FindMin(INT32 A, SIZE_T B) {
+		INT32 BInt = (INT32)B;
+		return (((A) < (BInt)) ? (A) : (BInt));
+	}
+
 
 	NTSTATUS device_control(PDEVICE_OBJECT device_object, PIRP irp) {
 		UNREFERENCED_PARAMETER(device_object);
@@ -149,47 +151,44 @@ namespace driver {
 		const ULONG control_code = stack_irp->Parameters.DeviceIoControl.IoControlCode;
 		switch (control_code)
 		{
-			case codes::attach:
+		case codes::attach:
 
-				status = PsLookupProcessByProcessId(request->process_id, &target_process);
-				break;
-			case codes::read:
-				if (target_process != nullptr) {
-					ULONGLONG ProcessBase = GetProcessCr3(target_process);
-					ObDereferenceObject(target_process);
+			status = PsLookupProcessByProcessId(request->process_id, &target_process);
+			break;
+		case codes::read:
+			if (target_process != nullptr) {
+				ULONGLONG ProcessBase = GetProcessCr3(target_process);
+				ObDereferenceObject(target_process);
 
-					SIZE_T Offset = NULL;
-					SIZE_T TotalSize = request->size;
-					INT64 PhysicalAddress = TranslateLinearAddress(ProcessBase, (ULONG64)request->target + Offset);
-					if (!PhysicalAddress) {
-						status = STATUS_UNSUCCESSFUL;
-						break;
-					}
+				SIZE_T Offset = NULL;
+				SIZE_T TotalSize = request->size;
+				INT64 PhysicalAddress = TranslateLinearAddress(ProcessBase, (ULONG64)request->target + Offset);
+				if (!PhysicalAddress)
+					break;
 
-					ULONG64 FinalSize = FindMin(PAGE_SIZE - (PhysicalAddress & 0xFFF), TotalSize);
-					SIZE_T BytesRead = NULL;
+				ULONG64 FinalSize = FindMin(PAGE_SIZE - (PhysicalAddress & 0xFFF), TotalSize);
+				SIZE_T BytesRead = NULL;
 
-					ReadPhysicalMemory(PVOID(PhysicalAddress), (PVOID)((ULONG64)request->buffer + Offset), FinalSize, &BytesRead);
-					status = STATUS_SUCCESS;
-					//status = MmCopyVirtualMemory(target_process, request->target, PsGetCurrentProcess(), request->buffer, request->size, KernelMode, &request->return_size);
-				}
-				break;
-			case codes::write:
-				if (target_process != nullptr) {
-					status = MmCopyVirtualMemory(PsGetCurrentProcess(), request->buffer, target_process, request->target, request->size, KernelMode, &request->return_size);
-					ObDereferenceObject(target_process);
-				}
-				break;
-			case codes::get_base:
-				if (target_process != nullptr) {
-					ULONGLONG base_address = (ULONGLONG)PsGetProcessSectionBaseAddress(target_process);
-					*reinterpret_cast<PVOID*>(request->buffer) = reinterpret_cast<PVOID>(base_address);
-					request->return_size = sizeof(PVOID);
-					status = STATUS_SUCCESS;
-				}
-				break;
-			default:
-				break;
+				ReadPhysicalMemory(PVOID(PhysicalAddress), (PVOID)((ULONG64)request->buffer + Offset), FinalSize, &BytesRead);
+				status = STATUS_SUCCESS;
+				//status = MmCopyVirtualMemory(target_process, request->target, PsGetCurrentProcess(), request->buffer, request->size, KernelMode, &request->return_size);
+			}
+			break;
+		case codes::write:
+			if (target_process != nullptr) {
+				status = MmCopyVirtualMemory(PsGetCurrentProcess(), request->buffer, target_process, request->target, request->size, KernelMode, &request->return_size);
+			}
+			break;
+		case codes::get_base:
+			if (target_process != nullptr) {
+				ULONGLONG base_address = (ULONGLONG)PsGetProcessSectionBaseAddress(target_process);
+				*reinterpret_cast<PVOID*>(request->buffer) = reinterpret_cast<PVOID>(base_address);
+				request->return_size = sizeof(PVOID);
+				status = STATUS_SUCCESS;
+			}
+			break;
+		default:
+			break;
 		}
 
 		irp->IoStatus.Status = status;
@@ -240,7 +239,7 @@ NTSTATUS driver_main(PDRIVER_OBJECT driver_object, PUNICODE_STRING registry_path
 
 NTSTATUS DriverEntry() {
 	debug_print("[+] Hi from kernel");
-	
+
 	UNICODE_STRING driver_name = {};
 
 	RtlInitUnicodeString(&driver_name, L"\\Driver\\GidraDriver");
