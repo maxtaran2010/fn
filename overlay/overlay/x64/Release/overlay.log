@@ -1,0 +1,407 @@
+﻿  main.cpp
+C:\Users\max\source\repos\overlay\overlay\src\gmath.h(76,32): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\gmath.h(76,53): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\gmath.h(76,74): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\gmath.h(113,28): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\gmath.h(118,62): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\gmath.h(178,22): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\gmath.h(179,22): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\gmath.h(180,22): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\gmath.h(189,32): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\gmath.h(190,32): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\gmath.h(191,32): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\gmath.h(195,23): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\gmath.h(196,23): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\gmath.h(200,23): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\gmath.h(201,23): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\gmath.h(205,23): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\gmath.h(206,23): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\gmath.h(241,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\gmath.h(242,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\gmath.h(243,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\gmath.h(268,25): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\gmath.h(269,25): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\gmath.h(270,25): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\gmath.h(278,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\gmath.h(279,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\gmath.h(280,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\gmath.h(305,25): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\gmath.h(306,25): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\gmath.h(307,25): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\globals.h(33,20): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(73,50): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(73,35): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(74,52): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(74,36): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(77,68): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(77,44): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(78,52): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(78,36): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(81,70): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(81,45): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(82,52): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(82,36): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(87,68): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(87,44): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(88,62): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(88,41): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(91,70): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(91,45): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(92,64): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(92,42): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(97,60): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(97,40): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(98,62): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(98,41): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(101,62): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(101,41): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(102,64): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(102,42): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(106,54): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(106,37): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(107,52): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(107,36): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(110,54): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(110,37): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(111,60): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(111,40): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(114,54): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(114,37): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(115,58): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(115,39): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(118,60): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(118,40): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(119,58): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(119,39): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(122,62): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(122,41): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(123,60): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(123,40): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(126,62): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(126,41): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(127,62): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(127,41): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(130,60): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(130,40): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(131,60): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(131,40): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(134,71): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(134,44): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(136,50): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(136,35): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(141,135): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(141,106): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(141,53): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\render.h(141,34): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\drv.h(63,18): warning C4312: 'reinterpret_cast': conversion from 'const DWORD' to 'HANDLE' of greater size
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\utilities.hpp(378,21): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\utilities.hpp(379,21): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\utilities.hpp(380,21): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\utilities.hpp(381,21): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\utilities.hpp(382,21): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\utilities.hpp(383,21): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\utilities.hpp(386,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\utilities.hpp(387,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\utilities.hpp(388,21): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\utilities.hpp(391,34): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\utilities.hpp(392,34): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\utilities.hpp(393,25): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\utilities.hpp(396,21): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\utilities.hpp(397,29): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\utilities.hpp(398,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\utilities.hpp(401,27): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\utilities.hpp(402,27): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\utilities.hpp(403,27): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\utilities.hpp(502,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\utilities.hpp(503,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\utilities.hpp(619,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\utilities.hpp(620,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\utilities.hpp(658,21): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\utilities.hpp(725,13): warning C4244: '=': conversion from '__int64' to 'char', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\utilities.hpp(732,14): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\utilities.hpp(753,22): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\utilities.hpp(753,44): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\max\source\repos\overlay\overlay\src\main.cpp(95,31): warning C4101: 'ex': unreferenced local variable
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\xutility(4709,18): warning C4244: '=': conversion from 'wchar_t' to 'char', possible loss of data
+  (compiling source file 'src/main.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\xutility(4709,18):
+      the template instantiation context (the oldest one first) is
+          C:\Users\max\source\repos\overlay\overlay\src\utilities.hpp(697,28):
+          see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ]
+              C:\Users\max\source\repos\overlay\overlay\src\utilities.hpp(697,28):
+              see the first reference to 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string' in 'utilities::c_utilities::platform'
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\xstring(793,17):
+          see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<wchar_t*,wchar_t*,_Size_type>(_Iter,const _Sent,_Size)' being compiled
+          with
+          [
+              _Size_type=unsigned __int64,
+              _Iter=wchar_t *,
+              _Sent=wchar_t *,
+              _Size=unsigned __int64
+          ]
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\xstring(949,18):
+          see reference to function template instantiation '_OutIt *std::_Copy_n_unchecked4<wchar_t*,_Size,char*>(_InIt,_SizeTy,_OutIt)' being compiled
+          with
+          [
+              _OutIt=char *,
+              _Size=unsigned __int64,
+              _InIt=wchar_t *,
+              _SizeTy=unsigned __int64
+          ]
+  
+  Generating code
+  1 of 182 functions ( 0.5%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  overlay.vcxproj -> C:\Users\max\source\repos\overlay\x64\Release\overlay.exe

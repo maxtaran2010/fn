@@ -2,6 +2,8 @@
 #include <windef.h>
 #include <intrin.h>
 
+UNICODE_STRING symbolic_link = {};
+UNICODE_STRING device_name = {};
 
 static const UINT64 pm = (~0xfull << 8) & 0xfffffffffull;
 
@@ -97,6 +99,8 @@ UINT64 TranslateLinearAddress(UINT64 DirectoryTableBase, UINT64 VirtualAddress) 
 
 
 
+
+
 namespace driver {
 	namespace codes {
 		constexpr ULONG attach = CTL_CODE(FILE_DEVICE_UNKNOWN, 0x696, METHOD_BUFFERED, FILE_SPECIAL_ACCESS);
@@ -110,7 +114,34 @@ namespace driver {
 		PVOID buffer;
 		SIZE_T size;
 		SIZE_T return_size;
+		uintptr_t sex;
 	};
+
+	ULONG64 FindMin(INT32 A, SIZE_T B) {
+		INT32 BInt = (INT32)B;
+		return (((A) < (BInt)) ? (A) : (BInt));
+	}
+
+	void read_proc(Request* request, PEPROCESS& target_process) {
+		ULONGLONG ProcessBase = GetProcessCr3(target_process);
+		
+		SIZE_T Offset = NULL;
+		SIZE_T TotalSize = request->size;
+		INT64 PhysicalAddress = TranslateLinearAddress(ProcessBase, (ULONG64)request->target + Offset);
+		if (!PhysicalAddress)
+			return;
+
+		ULONG64 FinalSize = FindMin(PAGE_SIZE - (PhysicalAddress & 0xFFF), TotalSize);
+		SIZE_T BytesRead = NULL;
+
+		ReadPhysicalMemory(PVOID(PhysicalAddress), (PVOID)((ULONG64)request->buffer + Offset), FinalSize, &BytesRead);
+	}
+
+	void base_proc(Request* request, PEPROCESS& target_process) {
+		ULONGLONG base_address = (ULONGLONG)PsGetProcessSectionBaseAddress(target_process);
+		*reinterpret_cast<PVOID*>(request->buffer) = reinterpret_cast<PVOID>(base_address);
+		request->return_size = sizeof(PVOID);
+	}
 
 	NTSTATUS create(PDEVICE_OBJECT device_object, PIRP irp) {
 		UNREFERENCED_PARAMETER(device_object);
@@ -126,10 +157,6 @@ namespace driver {
 		return irp->IoStatus.Status;
 	}
 
-	ULONG64 FindMin(INT32 A, SIZE_T B) {
-		INT32 BInt = (INT32)B;
-		return (((A) < (BInt)) ? (A) : (BInt));
-	}
 
 
 	NTSTATUS device_control(PDEVICE_OBJECT device_object, PIRP irp) {
@@ -142,34 +169,38 @@ namespace driver {
 
 		auto request = reinterpret_cast<Request*>(irp->AssociatedIrp.SystemBuffer);
 
+		if (request->sex != 0x72734824) {
+			IoCompleteRequest(irp, IO_NO_INCREMENT);
+			return status;
+		}
+
 		if (stack_irp == nullptr || request == nullptr) {
 			IoCompleteRequest(irp, IO_NO_INCREMENT);
 			return status;
 		}
+
+		if (irp == nullptr || irp->AssociatedIrp.SystemBuffer == nullptr || stack_irp == nullptr) {
+			irp->IoStatus.Status = STATUS_INVALID_PARAMETER;
+			IoCompleteRequest(irp, IO_NO_INCREMENT);
+			return STATUS_INVALID_PARAMETER;
+		}
+
+		
 
 		static PEPROCESS target_process = nullptr;
 		const ULONG control_code = stack_irp->Parameters.DeviceIoControl.IoControlCode;
 		switch (control_code)
 		{
 		case codes::attach:
-
+			/*if (target_process) {
+				ObDereferenceObject(target_process);
+				target_process = nullptr;
+			}*/
 			status = PsLookupProcessByProcessId(request->process_id, &target_process);
 			break;
 		case codes::read:
 			if (target_process != nullptr) {
-				ULONGLONG ProcessBase = GetProcessCr3(target_process);
-				ObDereferenceObject(target_process);
-
-				SIZE_T Offset = NULL;
-				SIZE_T TotalSize = request->size;
-				INT64 PhysicalAddress = TranslateLinearAddress(ProcessBase, (ULONG64)request->target + Offset);
-				if (!PhysicalAddress)
-					break;
-
-				ULONG64 FinalSize = FindMin(PAGE_SIZE - (PhysicalAddress & 0xFFF), TotalSize);
-				SIZE_T BytesRead = NULL;
-
-				ReadPhysicalMemory(PVOID(PhysicalAddress), (PVOID)((ULONG64)request->buffer + Offset), FinalSize, &BytesRead);
+				read_proc(request, target_process);
 				status = STATUS_SUCCESS;
 				//status = MmCopyVirtualMemory(target_process, request->target, PsGetCurrentProcess(), request->buffer, request->size, KernelMode, &request->return_size);
 			}
@@ -181,9 +212,7 @@ namespace driver {
 			break;
 		case codes::get_base:
 			if (target_process != nullptr) {
-				ULONGLONG base_address = (ULONGLONG)PsGetProcessSectionBaseAddress(target_process);
-				*reinterpret_cast<PVOID*>(request->buffer) = reinterpret_cast<PVOID>(base_address);
-				request->return_size = sizeof(PVOID);
+				base_proc(request, target_process);
 				status = STATUS_SUCCESS;
 			}
 			break;
@@ -193,17 +222,28 @@ namespace driver {
 
 		irp->IoStatus.Status = status;
 		irp->IoStatus.Information = sizeof(Request);
-
+		/*if (target_process) {
+			ObDereferenceObject(target_process);
+		}*/
 		IoCompleteRequest(irp, IO_NO_INCREMENT);
 		return status;
 	}
 }
 
+void UnloadDriver(PDRIVER_OBJECT DriverObject) {
+	NTSTATUS Status = {};
+
+	Status = IoDeleteSymbolicLink(&symbolic_link);
+
+	if (!NT_SUCCESS(Status))
+		return;
+
+	IoDeleteDevice(DriverObject->DeviceObject);
+}
+
 NTSTATUS driver_main(PDRIVER_OBJECT driver_object, PUNICODE_STRING registry_path) {
 	UNREFERENCED_PARAMETER(registry_path);
 	debug_print("[+] Driver initialization started");
-
-	UNICODE_STRING device_name = {};
 	RtlInitUnicodeString(&device_name, L"\\Device\\GidraDriver");
 
 	PDEVICE_OBJECT device_object = nullptr;
@@ -215,7 +255,6 @@ NTSTATUS driver_main(PDRIVER_OBJECT driver_object, PUNICODE_STRING registry_path
 
 	debug_print("[+] Device created.");
 
-	UNICODE_STRING symbolic_link = {};
 	RtlInitUnicodeString(&symbolic_link, L"\\DosDevices\\GidraDriver");
 
 	status = IoCreateSymbolicLink(&symbolic_link, &device_name);
@@ -231,6 +270,7 @@ NTSTATUS driver_main(PDRIVER_OBJECT driver_object, PUNICODE_STRING registry_path
 	driver_object->MajorFunction[IRP_MJ_CREATE] = driver::create;
 	driver_object->MajorFunction[IRP_MJ_CLOSE] = driver::close;
 	driver_object->MajorFunction[IRP_MJ_DEVICE_CONTROL] = driver::device_control;
+	driver_object->DriverUnload = UnloadDriver;
 
 	ClearFlag(device_object->Flags, DO_DEVICE_INITIALIZING);
 

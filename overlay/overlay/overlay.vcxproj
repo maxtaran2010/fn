@@ -18,11 +18,24 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\drv.h" />
+    <ClInclude Include="src\globals.h" />
+    <ClInclude Include="src\gmath.h" />
+    <ClInclude Include="src\main.h" />
+    <ClInclude Include="src\ofs.h" />
+    <ClInclude Include="src\render.h" />
+    <ClInclude Include="src\spoofer.h" />
+    <ClInclude Include="src\utilities.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{f869e863-e978-43cb-8fc1-b66becc5f0dc}</ProjectGuid>
-    <RootNamespace>um</RootNamespace>
+    <ProjectGuid>{cc49b545-8a33-4533-9470-2c02f0b4e9c6}</ProjectGuid>
+    <RootNamespace>overlay</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -71,10 +84,14 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)build\</OutDir>
-    <IntDir>$(SolutionDir)build\um_interns</IntDir>
     <IncludePath>C:\Users\max\gl\glfw\include;C:\Users\max\gl\glew\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\max\gl\glfw\lib-vc2022;C:\Users\max\gl\glew\lib\Release\x64;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Users\max\gl\glew\lib\Release\x64;C:\Users\max\gl\glfw\lib-vc2022;$(LibraryPath)</LibraryPath>
+    <OutDir>..\build</OutDir>
+    <IntDir>..\build\int</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>C:\Users\max\gl\glfw\include;C:\Users\max\gl\glew\include\;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\max\gl\glew\lib\Release\x64;C:\Users\max\gl\glfw\lib-vc2022;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -110,15 +127,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <LanguageStandard> </LanguageStandard>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>C:\Users\max\gl\glew\lib\Release\x64\glew32.lib;C:\Users\max\gl\glfw\lib-vc2022\glfw3.lib;C:\Program Files (x86)\Windows Kits\10\Lib\10.0.18362.0\um\x64\opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
-      <AdditionalDependencies>C:\Users\max\gl\glfw\lib-vc2022\glfw3.lib;C:\Users\max\gl\glew\lib\Release\x64\glew32.lib;C:\Program Files (x86)\Windows Kits\10\Lib\10.0.18362.0\um\x64\opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -129,28 +145,18 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>C:\Program Files (x86)\Windows Kits\10\Lib\10.0.18362.0\um\x64\opengl32.lib;C:\Users\max\gl\glew\lib\Release\x64\glew32.lib;C:\Users\max\gl\glfw\lib-vc2022\glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\ofs.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\drv.h" />
-    <ClInclude Include="src\globals.h" />
-    <ClInclude Include="src\gmath.h" />
-    <ClInclude Include="src\main.h" />
-    <ClInclude Include="src\render\main.h" />
-    <ClInclude Include="src\spoofer.h" />
-    <ClInclude Include="src\utilities.hpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-  </Target>
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
 </Project>
